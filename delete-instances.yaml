@@ -1,0 +1,76 @@
+- name: delete ec2 instances
+  hosts: local
+  connection: local
+  tasks:
+    - name: delete mongodb
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-07bfae2183d2ed900
+        state: absent
+        wait: true
+
+    - name: delete redis
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-0ed2928a00fc40307
+        state: absent
+        wait: true
+
+    - name: delete mysql
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-083fe3825b1979c25
+        state: absent
+        wait: true
+
+    - name: delete rabbitmq
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-036de64ed096d76c3
+        state: absent
+        wait: true
+
+    - name: delete catalogue
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-0ad27e05e6dd37354
+        state: absent
+        wait: true
+
+    - name: delete user
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-04b18f278fbb8dd7b
+        state: absent
+        wait: true
+
+    - name: delete cart
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-02431b063886d1d67
+        state: absent
+        wait: true
+
+    - name: delete shipping
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-0bee9fca8f49d0249
+        state: absent
+        wait: true
+
+
+    - name: delete payment
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-0de4c45e61576d7ee
+        state: absent
+        wait: true
+
+
+    - name: delete frontend
+      amazon.aws.ec2_instance:
+        instance_ids:
+          - i-07cd235da08287cd3
+        state: absent
+        wait: true
+

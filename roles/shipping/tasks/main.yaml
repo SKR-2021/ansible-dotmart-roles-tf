@@ -1,0 +1,35 @@
+- name: app setup 
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-setup.yaml
+
+- name: app setup 
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: java.yaml
+
+- name: system setup 
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: system-setup.yaml
+
+- name: install mysql python libraries
+  ansible.builtin.pip:
+    executable: pip3.9
+    name: "{{ item }}"
+  loop:
+  - PyMySQL
+  - cryptography
+
+- name: Import shipping data into mysql
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    login_host: "{{ MYSQL_HOST }}" # The Shipping server is executing the SQL import, but the data is being stored in the remote MySQL server
+    login_user: "{{ MYSQL_ROOT_USER }}"
+    login_password: "{{ MYSQL_ROOT_PWD }}"
+    target: "{{ item }}"
+  loop:
+  - /app/db/schema.sql  # database/schema structure
+  - /app/db/app-user.sql # application database user/permissions
+  - /app/db/master-data.sql # initial Shipping application data
