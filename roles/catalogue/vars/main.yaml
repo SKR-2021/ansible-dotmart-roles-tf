@@ -1,1 +1,1 @@
-MONGODB_HOST: mongodb.dso86s.xyz
+MONGODB_HOST: mongodb-{{ env }}.dso86s.xyz
